@@ -41,6 +41,7 @@ module.exports = function(grunt) {
     'build:worker',
     'build:sync',
     'build:node',
+    'copy',
     'file-size',
   ]);
   grunt.registerTask('build:debug', [
@@ -53,11 +54,13 @@ module.exports = function(grunt) {
     'build:worker',
     'build:sync',
     'build:node',
+    'copy',
     'file-size',
   ]);
   // simplifications for development
   grunt.registerTask('rebuild', [
     'versions',
+    'libsass:build',
     'build:sass',
     'build:worker',
     'build:sync',
@@ -72,6 +75,7 @@ module.exports = function(grunt) {
     'build:worker',
     'build:sync',
     'build:node',
+    'copy',
     'file-size',
   ]);
 
