@@ -1,0 +1,11 @@
+<script src="../dist/sass.js"></script>
+<script>
+const sass = new Sass();
+
+// TODO: How do we know when the wasm module is loaded?
+setTimeout(() => {
+  console.log('doing wasm thing');
+  sass.compile('ITS{WORKING{color:green}}', result => document.body.innerHTML = JSON.stringify(result));
+}, 2000);
+</script>
+<div></div>

@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   'use strict';
 
+  require('grunt-contrib-copy')(grunt);
   require('time-grunt')(grunt);
   require('jit-grunt')(grunt, {
     // mappings
@@ -57,11 +58,11 @@ module.exports = function(grunt) {
   // simplifications for development
   grunt.registerTask('rebuild', [
     'versions',
-    'libsass:build',
     'build:sass',
     'build:worker',
     'build:sync',
     'build:node',
+    'copy',
     'file-size',
   ]);
   grunt.registerTask('rebuild:debug', [

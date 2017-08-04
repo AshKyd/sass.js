@@ -1,12 +1,13 @@
---- Makefile.orig	2015-09-09 14:30:05.000000000 +0300
-+++ Makefile	2015-09-09 14:36:59.000000000 +0300
-@@ -208,6 +208,33 @@
+--- /tmp/zMfIEt_Makefile
++++ /home/ash/Web/sass.js/libsass/libsass/Makefile
+@@ -227,6 +227,35 @@
  debug-shared: CXXFLAGS := -g -DDEBUG -DDEBUG_LVL="$(DEBUG_LVL)" $(filter-out -O2,$(CXXFLAGS))
  debug-shared: shared
  
 +js: static
 +	emcc lib/libsass.a -o lib/libsass.js \
 + 		-O3 \
++		-s WASM=1 \
 +		-s EXPORTED_FUNCTIONS="['_sass_compile_emscripten']" \
 +		-s DISABLE_EXCEPTION_CATCHING=0 \
 +		-s ALLOW_MEMORY_GROWTH=1 \
@@ -18,6 +19,7 @@
 +js-debug: static
 +	emcc lib/libsass.a -o lib/libsass.js \
 +		-O0 \
++		-s WASM=1 \
 +		-s EXPORTED_FUNCTIONS="['_sass_compile_emscripten']" \
 +		-s DISABLE_EXCEPTION_CATCHING=0 \
 +		-s ALLOW_MEMORY_GROWTH=1 \
@@ -34,8 +36,8 @@
  lib:
  	$(MKDIR) lib
  
-@@ -299,7 +326,7 @@
- 	$(RUBY_BIN) $(SASS_SPEC_PATH)/sass-spec.rb -c $(SASSC_BIN) $(LOG_FLAGS) $(SASS_SPEC_PATH)/spec/issues
+@@ -321,7 +350,7 @@
+ 	$(RUBY_BIN) $(SASS_SPEC_PATH)/sass-spec.rb -V 3.4 -c $(SASSC_BIN) --impl libsass --probe-todo $(LOG_FLAGS) $(SASS_SPEC_PATH)/$(SASS_SPEC_SPEC_DIR)
  
  clean-objects: lib
 -	-$(RM) lib/*.a lib/*.so lib/*.dll lib/*.la
@@ -43,3 +45,4 @@
  	-$(RMDIR) lib
  clean: clean-objects
  	$(RM) $(CLEANUPS)
+
